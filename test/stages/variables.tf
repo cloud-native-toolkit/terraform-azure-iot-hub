@@ -28,3 +28,13 @@ variable "provision" {
   description = "Flag indicating that the instance should be provisioned. If false then an existing instance will be looked up"
   default     = true
 }
+
+variable "enabled" {}
+
+variable "subscription_id" {}
+
+variable "client_id" {}
+
+variable "client_secret" {}
+
+variable "tenant_id" {}
