@@ -13,10 +13,8 @@ versions:
       - id: resource_group
         refs:
           - source: github.com/cloud-native-toolkit/terraform-azure-resource-group
-            version: ">= 1.0.0"
-    variables: 
+            version: ">= 1.0.0" 
       
-        moduleRef: 
-          id: resource_group
+    
       
 cloudProvider: azure
