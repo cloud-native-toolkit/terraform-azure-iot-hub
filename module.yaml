@@ -6,15 +6,6 @@ tags:
   - devops
 versions:
   - platforms: []
-    providers: 
-      - name: azurerm
-        source: "hashicorp/azurerm"
-    dependencies: 
-      - id: resource_group
-        refs:
-          - source: github.com/cloud-native-toolkit/terraform-azure-resource-group
-            version: ">= 1.0.0" 
-      
-    
-      
+    dependencies: []
+    variables: []
 cloudProvider: azure
