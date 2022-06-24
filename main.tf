@@ -1,64 +1,36 @@
-resource "azurerm_resource_group" {
-  name     = var.resource_group_name
-  location = var.region
-}
 
-
-resource "azurerm_storage_account" {
+resource "azurerm_storage_account" "storage_account" {
   name                     = var.storage_account_name
   resource_group_name      = var.resource_group_name
   location                 = var.region
-  # account_tier             = "Standard"
-  # account_replication_type = "LRS"
+  account_tier             = var.storage_account_tier
+  account_replication_type = var.replication_type
 }
 
 
-resource "azurerm_storage_container" {
-  name                  = ""
-  storage_account_name  = var.storage_account_name
-  # container_access_type = "private"
+resource "azurerm_storage_container" "storage_container" {
+  count                 = var.container_name != "" ? 1 : 0
+  name                  = var.container_name
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = var.container_access_type
 }
 
-
-resource "azurerm_eventhub_namespace" {
-  name                = ""
-  resource_group_name = var.resource_group_name
-  location            = var.region
-  sku                 = "Basic"
-}
-
-
-resource "azurerm_eventhub" {
-  name                = ""
-  resource_group_name = var.resource_group_name
-  namespace_name      = var.namespace
-  partition_count     = 2
-  message_retention   = 1
-}
-
-resource "azurerm_eventhub_authorization_rule"  {
-  resource_group_name = var.resource_group_name
-  namespace_name      = var.namespace
-  eventhub_name       = var.eventhub_name
-  name                = ""
-  send                = true
-}
 
 resource "azurerm_servicebus_namespace" {
-  name                = ""
+  name                = var.servicebus_namespace
   location            = var.region
   resource_group_name = var.resource_group_name
-  sku                 = "Standard"
+  sku                 = var.sku
 }
 
 resource "azurerm_servicebus_queue" {
-  name         = ""
+  name         = var.servicebus_queue_name
   namespace_id = var.servicebus_namespace_id
   enable_partitioning = true
 }
 
 resource "azurerm_servicebus_queue_authorization_rule"  {
-  name     = ""
+  name     = var.servicebus_queue_authorization_rule_name
   queue_id = var.servicebus_queue_id
 
   listen = false
@@ -72,23 +44,21 @@ resource "azurerm_iothub"  {
   location            = var.region
 
   sku {
-    name     = "S1"
-    capacity = "1"
+    name     = var.sku_name
+    capacity = var.sku_capacity
   }
-  tags = {
-    purpose = "testing"
-  }
+  tags = var.tags
 }
 
-resource "azurerm_iothub_endpoint_storage_container" {
+resource "azurerm_iothub_endpoint_storage_container" "endpoint_storage_container" {
   resource_group_name = var.resource_group_name
   iothub_id           = var.iothub_id
-  name                = ""
+  name                = var.iothub_endpoint_storage_container_name
 
-  connection_string          = var.storage_account_name.connection_string
+  connection_string          = azurerm_storage_account.storage_account.primary_blob_connection_string
   batch_frequency_in_seconds = 60
   max_chunk_size_in_bytes    = 10485760
-  container_name             = ""
+  container_name             = var.container_name
   encoding                   = "Avro"
   file_name_format           = "{iothub}/{partition}_{YYYY}_{MM}_{DD}_{HH}_{mm}"
 }
@@ -96,7 +66,7 @@ resource "azurerm_iothub_endpoint_storage_container" {
 resource "azurerm_iothub_route" {
   resource_group_name = var.resource_group_name
   iothub_name         = var.iothub_name
-  name                = ""
+  name                = var.iothub_route_name
 
   source         = "DeviceMessages"
   condition      = "true"
@@ -104,10 +74,10 @@ resource "azurerm_iothub_route" {
   enabled        = true
 }
 
-resource "azurerm_iothub_endpoint_servicebus_queue" "example" {
-  resource_group_name = azurerm_resource_group.example.name
-  iothub_id           = azurerm_iothub.example.id
-  name                = "example"
+resource "azurerm_iothub_endpoint_servicebus_queue" "iothub_endpoint_servicebus_queue" {
+  resource_group_name = var.resource_group_name
+  iothub_id           = var.iothub_id
+  name                = var.servicebus_endpoint_queue_name
 
-  connection_string = azurerm_servicebus_queue_authorization_rule.example.primary_connection_string
+  connection_string = azurerm_servicebus_queue_authorization_rule.iothub_endpoint_servicebus_queue.primary_connection_string
 }
