@@ -29,8 +29,6 @@ variable "provision" {
   default     = true
 }
 
-variable "enabled" {}
-
 variable "subscription_id" {}
 
 variable "client_id" {}
