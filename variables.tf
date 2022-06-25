@@ -70,6 +70,7 @@ variable "iothub_name" {
 }
 
 
+
 variable "iothub_id" {
   type = string
   description = "Id of azure iothub"
@@ -132,4 +133,3 @@ variable "servicebus_endpoint_queue_name" {
   description = "Name of the endpoint service bus queue"
 }
   
-}

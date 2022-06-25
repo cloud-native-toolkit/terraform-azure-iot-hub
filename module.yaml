@@ -21,7 +21,7 @@ versions:
           output: name
       - name: region
         scope: global
-      - name:  name
+      - name:  iothub_name
         scope: module
       - name: name_prefix
         scope: global
