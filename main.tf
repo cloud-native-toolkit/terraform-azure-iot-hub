@@ -16,20 +16,20 @@ resource "azurerm_storage_container" "storage_container" {
 }
 
 
-resource "azurerm_servicebus_namespace" {
+resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   name                = var.servicebus_namespace
   location            = var.region
   resource_group_name = var.resource_group_name
   sku                 = var.sku
 }
 
-resource "azurerm_servicebus_queue" {
+resource "azurerm_servicebus_queue" "servicebus_queue" {
   name         = var.servicebus_queue_name
   namespace_id = var.servicebus_namespace_id
   enable_partitioning = true
 }
 
-resource "azurerm_servicebus_queue_authorization_rule"  {
+resource "azurerm_servicebus_queue_authorization_rule" "servicebus_queue_authorization_rule" {
   name     = var.servicebus_queue_authorization_rule_name
   queue_id = var.servicebus_queue_id
 
@@ -38,7 +38,7 @@ resource "azurerm_servicebus_queue_authorization_rule"  {
   manage = false
 }
 
-resource "azurerm_iothub"  {
+resource "azurerm_iothub" "iothub" {
   name                = var.iothub_name
   resource_group_name = var.resource_group_name
   location            = var.region
@@ -63,7 +63,7 @@ resource "azurerm_iothub_endpoint_storage_container" "endpoint_storage_container
   file_name_format           = "{iothub}/{partition}_{YYYY}_{MM}_{DD}_{HH}_{mm}"
 }
 
-resource "azurerm_iothub_route" {
+resource "azurerm_iothub_route" "iothub_route" {
   resource_group_name = var.resource_group_name
   iothub_name         = var.iothub_name
   name                = var.iothub_route_name
