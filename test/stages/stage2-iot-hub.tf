@@ -2,8 +2,8 @@ module "iot-hub" {
     
     source = "./module"
 
-    resource_group_name = module.resource_group_name
-    storage_account_name = module.storage_account.name
+    resource_group_name = var.resource_group_name
+    storage_account_name = var.storage_account.name
     iothub_id = var.iothub_id
     iothub_name = var.iothub_name
     iothub_endpoint_storage_container_name = var.iothub_endpoint_storage_container_name

@@ -36,6 +36,19 @@ variable "iothub_name" {
   default = ""
 }
 
+variable "iothub_id" {
+
+  type = string
+  description = "Id of the iothub"
+  default = ""
+}
+
+variable "storage_account_name" {
+
+  type = string
+  description = "Name of the storage account"
+  default = ""
+}
 variable "iothub_endpoint_storage_container_name" {
 
   type = string
