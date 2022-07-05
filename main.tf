@@ -70,7 +70,7 @@ resource "azurerm_iothub_route" "iothub_route" {
 
   source         = "DeviceMessages"
   condition      = "true"
-  endpoint_names = [azurerm_iothub_endpoint_storage_container.name]
+  endpoint_names = [azurerm_iothub_endpoint_storage_container.endpoint_storage_container.name]
   enabled        = true
 }
 
