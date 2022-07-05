@@ -6,6 +6,7 @@ module "iot-hub" {
     storage_account_name = module.storage_account.name
     iothub_id = var.iothub_id
     iothub_name = var.iothub_name
+    iothub_endpoint_storage_container_name = var.iothub_endpoint_storage_container_name
     servicebus_queue_authorization_rule_name = var.servicebus_queue_authorization_rule_name
     region = var.region
     servicebus_namespace = var.servicebus_namespace
