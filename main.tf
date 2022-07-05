@@ -70,7 +70,7 @@ resource "azurerm_iothub_route" "iothub_route" {
 
   source         = "DeviceMessages"
   condition      = "true"
-  endpoint_names = [azurerm_iothub_endpoint_storage_container.example.name]
+  endpoint_names = [azurerm_iothub_endpoint_storage_container.name]
   enabled        = true
 }
 
@@ -78,6 +78,4 @@ resource "azurerm_iothub_endpoint_servicebus_queue" "iothub_endpoint_servicebus_
   resource_group_name = var.resource_group_name
   iothub_id           = var.iothub_id
   name                = var.servicebus_endpoint_queue_name
-
-  connection_string = azurerm_servicebus_queue_authorization_rule.iothub_endpoint_servicebus_queue.primary_connection_string
 }
