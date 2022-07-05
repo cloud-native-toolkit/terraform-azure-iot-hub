@@ -78,4 +78,6 @@ resource "azurerm_iothub_endpoint_servicebus_queue" "iothub_endpoint_servicebus_
   resource_group_name = var.resource_group_name
   iothub_id           = var.iothub_id
   name                = var.servicebus_endpoint_queue_name
+
+  connection_string = azurerm_servicebus_queue_authorization_rule.servicebus_queue_authorization_rule.primary_connection_string
 }
