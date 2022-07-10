@@ -63,6 +63,20 @@ variable "servicebus_queue_authorization_rule_name" {
   default = ""
 }
 
+variable "container_name" {
+
+  type = string
+  description = "Name of the container"
+  default = ""
+}
+
+variable "sku_capacity" {
+  
+  type = string
+  description = "Capacity of sku"
+  default = "1"
+}
+
 variable "servicebus_namespace" {
   
   type = string
