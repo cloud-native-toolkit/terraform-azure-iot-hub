@@ -18,7 +18,6 @@ variable "storage_account_name" {
 
   type        = string
   description = "Name of the storage account for iothub"
-  default     = "iothubstorageaccount"
 }
 
 variable "storage_account_tier" {
@@ -42,7 +41,6 @@ variable "sku" {
 variable "container_name" {
   type        = string
   description = "The name of the Azure Blob Storage Container"
-  default     = ""
 }
 
 variable "container_access_type" {
@@ -91,6 +89,7 @@ variable "servicebus_queue_name" {
   type = string
   description = "Name of the servicebus_queue"
 }
+
 variable "servicebus_queue_id" {
   type = string
   description = "Id of the servicebus queue"
@@ -104,7 +103,6 @@ variable "sku_name" {
 variable "sku_capacity" {
   type  = string
   description = "Capacity of sku for iothub"
-  default = "1"
 }
 
 variable "tags" {
