@@ -11,7 +11,6 @@ variable "region" {
 variable "name_prefix" {
   type        = string
   description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
-  default     = ""
 }
 
 variable "storage_account_name" {
@@ -23,19 +22,16 @@ variable "storage_account_name" {
 variable "storage_account_tier" {
   type        = string
   description = "The Tier of the Azure Storage Account"
-  default     = "Standard"
 }
 
 variable "replication_type" {
   type        = string
   description = "The type of the Replication for Azure Storage Account"
-  default     = "LRS"
 }
 
 variable "sku" {
   type = string
   description = "The sku value of the eventhub namespace"
-  default = "Basic"
 }
 
 variable "container_name" {
@@ -46,7 +42,6 @@ variable "container_name" {
 variable "container_access_type" {
   type        = string
   description = "The type of access for Azure Storage Container"
-  default     = "private"
 }
 
 
@@ -107,7 +102,6 @@ variable "sku_capacity" {
 
 variable "tags" {
   type =  map
-  default = {}
   }
 
   variable "servicebus_queue_authorization_rule_name" {
