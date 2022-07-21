@@ -139,11 +139,6 @@ variable "container_access_type" {
   default = ""
 }
 
-variable "name_prefix" {
-  type        = string
-  description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
-  default = ""
-}
 
 variable "storage_account_tier" {
   type        = string
@@ -151,11 +146,6 @@ variable "storage_account_tier" {
   default = ""
 }
 
-variable "storage_account_tier" {
-  type        = string
-  description = "The Tier of the Azure Storage Account"
-  default = ""
-}
 
 variable "replication_type" {
   type        = string
