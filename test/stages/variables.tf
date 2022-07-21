@@ -170,6 +170,7 @@ variable "iothub_route_name" {
 variable "tags" {
   type =  map
   description = "The value of the tags"
+  default = {}
 }
 
 
