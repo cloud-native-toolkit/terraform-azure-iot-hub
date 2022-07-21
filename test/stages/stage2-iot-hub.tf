@@ -19,6 +19,11 @@ module "iot-hub" {
     servicebus_namespace_id = var.servicebus_namespace_id
     namespace = var.namespace
     sku = var.sku
+    tags = var.tags
+    container_access_type = var.container_access_type
+    name_prefix = var.name_prefix
+    storage_account_tier = var.storage_account_tier
+    replication_type = var.replication_type
     servicebus_queue_name = var.servicebus_queue_name
     iothub_route_name = var.iothub_route_name
 

@@ -133,6 +133,36 @@ variable "sku" {
   default = ""
 }
 
+variable "container_access_type" {
+  type        = string
+  description = "The type of access for Azure Storage Container"
+  default = ""
+}
+
+variable "name_prefix" {
+  type        = string
+  description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
+  default = ""
+}
+
+variable "storage_account_tier" {
+  type        = string
+  description = "The Tier of the Azure Storage Account"
+  default = ""
+}
+
+variable "storage_account_tier" {
+  type        = string
+  description = "The Tier of the Azure Storage Account"
+  default = ""
+}
+
+variable "replication_type" {
+  type        = string
+  description = "The type of the Replication for Azure Storage Account"
+  default = ""
+}
+
 variable "servicebus_queue_name" {
   
   type = string
@@ -146,6 +176,14 @@ variable "iothub_route_name" {
   description = "Name of the iothub route"
   default = ""
 }
+
+variable "tags" {
+  type =  map
+  description = "The value of the tags"
+}
+
+
+
 variable "subscription_id" {}
 
 variable "client_id" {}
