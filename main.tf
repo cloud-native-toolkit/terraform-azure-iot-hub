@@ -1,3 +1,10 @@
+locals {
+  prefix_name          = var.name_prefix != "" && var.name_prefix != null ? var.name_prefix : var.resource_group_name
+  storage_account_name = lower(replace(var.name != "" ? var.name : "${local.prefix_name}-iot-hub", "_", "-"))
+  # vnet                 = data.azurerm_virtual_network.vnet
+  # vpc_id               = lookup(local.vnet, "id", "")
+  # guid                 = lookup(local.vnet, "guid", "")
+}
 
 resource "azurerm_storage_account" "storage_account" {
   resource_group_name      = var.resource_group_name
