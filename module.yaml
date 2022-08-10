@@ -4,24 +4,27 @@ description: Module to provision iot-hub on azure
 tags:
   - tools
   - azure
+  - devops
 versions:
   - platforms: []
+    dependencies: []
+    variables: []
     providers: 
       - name: azurerm
         source: "hashicorp/azurerm"
-    dependencies: 
+dependencies: 
       - id: resource_group
-        refs: 
+        refs:
           - source: github.com/cloud-native-toolkit/terraform-azure-resource-group
-            version: ">=1.0.0"
-    variables: 
+            version: ">= 1.0.0"
+variables: 
       - name: resource_group_name
         moduleRef: 
           id: resource_group
           output: name
       - name: region
         scope: global
-      - name:  iothub_name
+      - name: name
         scope: module
       - name: name_prefix
         scope: global
